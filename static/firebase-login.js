@@ -3,12 +3,12 @@ import {initializeApp} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-
 import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAPxAWrEgPtR6AIha4Qzbv4cw-qQp5fGg4",
-    authDomain: "cars-453308.firebaseapp.com",
-    projectId: "cars-453308",
-    storageBucket: "cars-453308.firebasestorage.app",
-    messagingSenderId: "239647733010",
-    appId: "1:239647733010:web:5a31b3b47b32ef61e9afcb"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
     };
 
 window.addEventListener("load",function(){
@@ -90,3 +90,4 @@ function parseCookieToken(cookie){
     }
     return "";
 }
+
