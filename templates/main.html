@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firestore Basics</title>
+    <link type="text/css" href="{{ url_for('static',path='style.css')}}" rel="stylesheet"/>
+    <script type="module" src="{{ url_for('static', path='firebase-login.js') }}"></script>
+    <style>
+        #all-drivers, #all-teams {
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Formula 1 Racing</h1>
+    </header>
+
+    <main>
+        <p>Formula 1 racing is a high-speed, high-tech motorsport where drivers compete in cutting-edge cars on circuits around the world, combining precision, strategy, and adrenaline-fueled action.</p>
+        <section id="login-box">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br/>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br/>
+
+                <button type="button" id="login">Login</button>
+                <button type="button" id="sign-up">Sign Up</button>
+            </form>
+        </section>
+
+        <button id="sign-out" hidden="true">Sign Out</button>
+
+        <section id="list-buttons"><br>
+            <button id="show-drivers">Driver List</button>
+            <button id="show-teams">Team List</button>
+        </section>
+
+        <!-- Display drivers -->
+        <section id="all-drivers">
+            <h2>All Drivers</h2>
+            {% if drivers %}
+                {% for driver in drivers %}
+                    <article>
+                        <p>Name:{{driver.name}}</p>
+                        <p>Age:{{driver.age}}</p>
+                        <p>Team:{{driver.team}}</p>
+                    </article>
+                    <hr/>
+                {% endfor %}
+            {% else %}
+                <p>No drivers found.</p>
+            {% endif %}
+        </section>
+
+        <!-- Display teams -->
+        <section id="all-teams">
+            <h2>All Teams</h2>
+            {% if teams %}
+                {% for team in teams %}
+                    <article>
+                        <p>Name:{{team.name}}</p>
+                        <p>Year Founded:{{team.year_founded}}</p>
+                        <p>Total Race Wins:{{team.total_race_wins}}</p>
+                    </article>
+                    <hr/>
+                {% endfor %}
+            {% else %}
+                <p>No teams found.</p>
+            {% endif %}
+        </section>
+
+        <!-- user information -->
+        {% if user_token %}
+            <section id="user-info">
+                <h2>User Information</h2>
+                <p>User email:{{user_token.email}}</p>
+            </section>
+
+            <!-- linking Data -->
+            <section id="add-data">
+                <h2>Add Data</h2>
+                <a href="/add-driver">Add a Driver</a><br/>
+                <a href="/add-team">Add a Team</a>
+            </section>
+        {% endif %}
+
+        {% if request.query_params.get("error") %}
+            <div class="error-Message">
+                {{request.query_params.get("error")}}
+            </div>
+        {% endif %}
+    </main>
+
+    <!-- To get the Lists-->
+    <script>
+        document.getElementById('show-drivers').addEventListener('click',function() {
+            const driverList=document.getElementById('all-drivers');
+            driverList.style.display=driverList.style.display==='none'?'block':'none';
+        });
+
+        document.getElementById('show-teams').addEventListener('click',function(){
+            const teamList=document.getElementById('all-teams');
+            teamList.style.display=teamList.style.display==='none'?'block':'none';
+        });
+    </script>
+</body>
+</html>

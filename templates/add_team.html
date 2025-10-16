@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Team</title>
+    <link type="text/css" href="{{url_for('static', path='style.css')}}" rel="stylesheet"/>
+    <script type="module" src="{{url_for('static', path='firebase-login.js')}}"></script>
+</head>
+<body>
+    <div id="login-box" hidden="true">
+        Email:<input type="email" name="" id="email"><br/>
+        Password: <input type="password" name="" id="password"><br/>
+        <button id="login">Login</button>
+        <button id="sign-up">Sign Up</button>
+    </div>
+    <button id="sign-out" hidden="true">Sign out</button>
+
+    {% if user_token %}
+        <h1>Add a New Team</h1>
+        <form action="/add-team" method="post">
+            Name: <input type="text" name="name"><br/>
+            Year Founded: <input type="number" name="year_founded" min="0" required><br/>
+            Total Pole Positions: <input type="number" name="total_pole_positions" min="0" required><br/>
+            Total Race Wins: <input type="number" name="total_race_wins" min="0" required><br/>
+            Total Constructor Titles: <input type="number" name="total_constructor_titles" min="0" required><br/>
+            Previous Season Finish: <input type="number" name="previous_season_finish" min="0" required><br/>
+            <input type="submit" value="Add Team">
+        </form>
+    {% endif %}
+</body>
+</html>

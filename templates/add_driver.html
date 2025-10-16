@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Driver</title>
+    <link type="text/css" href="{{url_for('static', path='style.css')}}" rel="stylesheet"/>
+    <script type="module" src="{{url_for('static', path='firebase-login.js')}}"></script>
+</head>
+<body>
+    <div id="login-box" hidden="true">
+        Email:<input type="email" name="" id="email"><br/>
+        Password: <input type="password" name="" id="password"><br/>
+        <button id="login">Login</button>
+        <button id="sign-up">Sign Up</button>
+    </div>
+    <button id="sign-out" hidden="true">Sign out</button>
+
+    {% if user_token %}
+        <h1>Add a New Driver</h1>
+        <form action="/add-driver" method="post">
+            Name: <input type="text" name="name"><br/>
+            Age: <input type="number" name="age"><br/>
+            Total Pole Positions: <input type="number" name="total_pole_positions" min="0" required><br/>
+            Total Race Wins: <input type="number" name="total_race_wins" min="0" required><br/>
+            Total Points Scored: <input type="number" name="total_points_scored" min="0" required><br/>
+            Total World Titles: <input type="number" name="total_world_titles" min="0" required><br/>
+            Total Fastest Laps: <input type="number" name="total_fastest_laps" min="0" required><br/>
+            Team: <input type="text" name="team"><br/>
+            <input type="submit" value="Add Driver">
+        </form>
+    {% endif %}
+</body>
+</html>
